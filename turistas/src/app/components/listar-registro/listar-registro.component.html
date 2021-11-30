@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo">LISTADO DE TURISTAS</span>
+                    <button class="btn btn-primary float-end"routerLink="/crear-registro">REGISTRO</button>
+                    <table *ngIf="listRegistros.length > 0" class="table table-striped mt-3"></table>
+                    <table class="table mt-5 ">
+                        <thead >
+                          <tr>
+                          <th scope="col"></th>
+                          <th scope="col">TURISTA</th>
+                          <th scope="col">CELULAR</th>
+                          <th scope="col">CIUDAD</th>
+                          <th scope="col">SITIO TURISTICO</th>
+                          <th scope="col">FECHA</th>
+                          <th scope="col">    </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let registro of listRegistros | filter:filterRegistro">
+                            <th scope="row"></th>
+                            <td>{{ registro.nombre }}</td>
+                            <td>{{ registro.celular }}</td>
+                            <td>{{ registro.ciudad }}</td>
+                            <td>{{ registro.sitio }}</td>
+                            <td>{{ registro.fecha | date: 'dd/MM/yyyy' }} </td>
+                            <td>
+                                <i [routerLink]="['/editRegistro', registro._id]" class="fas fa-user-edit text-primary" ></i>    
+                                <i (click)="eliminarRegistro(registro._id)" class="fas fa-trash-alt text-danger"></i>
+                            <td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 style="text-align: start; margin-top: 10px;" *ngIf="listRegistros.length == 0">No hay registros para mostrar</h5> 
+                      <!-- <div class="mb-5"></div>
+                      <nav class="navbar navbar-light bg-light"> -->
+                        
+                        <div class="form-group">
+                          <div class="input-group">
+                            <div class="input-group-text bg-white">
+                              <i class="fa fa-search"></i>
+                            </div>
+                            <input type="text" class="from-control" name="filterRegistro" placeholder="Buscar.." [(ngModel)]="filterRegistro">
+                          </div>
+                        </div>
+                        
+                        <!-- <div class="container-fluid">
+                          <a class="navbar-brand"></a>
+                          <form class="d-flex">
+                            <input class="form-end me-2" type="search" placeholder="Busqueda" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                          </form>
+                        </div> -->
+                      <!-- </nav> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

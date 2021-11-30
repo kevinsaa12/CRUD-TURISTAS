@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-7 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <span class="titulo"> {{ titulo | uppercase}} </span>
+                    <form class="mt-3" [formGroup]="registroForm" (ngSubmit)="agregarRegistro()">
+                      
+                        <div class="row">
+                          <div class="mb-3"></div>
+
+                          <div class="col-lg-8">
+                            <label for="inputNombre">Nombre</label>
+                            <input type="text" formControlName="nombre" class="form-control" id="inputNombre"  placeholder="Nombre">
+                            <div class="text-danger"
+                              *ngIf="registroForm.get('nombre')?.hasError('required')&& registroForm.get('nombre')?.touched">
+                              <span>El nombre del turista <strong>es obligatorio</strong></span>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <label for="inputCelular">Celular</label>
+                            <input type="number" formControlName="celular" class="form-control" id="inputCelular"  placeholder="Celular">
+                            <div class="text-danger"
+                              *ngIf="registroForm.get('celular')?.hasError('required')&& registroForm.get('celular')?.touched">
+                              <span>Nº Celular <strong>requerido</strong></span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                           <div class="mb-3"></div>
+
+                            <div class="col-lg-6">
+                            <label for="inputCiudad">Ciudad</label>
+                            <input type="text" formControlName="ciudad" class="form-control" id="inputCiudad"  placeholder="Ciudad">
+                            <div class="text-danger"
+                              *ngIf="registroForm.get('ciudad')?.hasError('required')&& registroForm.get('ciudad')?.touched">
+                              <span>Ciudad a visitar <strong>es requeriada</strong></span>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3">
+                            <label for="inputState">Sitio Turistico</label>
+                            <select id="inputState" formControlName="sitio"  class="form-control">
+                              <option selected disabled value="">Selecionar...</option>
+                              <option>Juanchaco</option>
+                              <option>Pianguita</option>
+                              <option>Ladrilleros</option>
+                              <option>Bocana</option>
+                            </select>
+                            <div class="text-danger"
+                              *ngIf="registroForm.get('sitio')?.hasError('required')&& registroForm.get('sitio')?.touched">
+                            <span>Sitio <strong>es requeriado</strong></span>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-3">
+                            <label for="bsDatepicker">Fecha</label>
+                            <input class="form-control" id="bsDatepicker" bsDatepicker formControlName="fecha" [bsConfig]="{ dateInputFormat: 'DD MM YYYY, hh:mm' }">
+                            <div class="text-danger"
+                               *ngIf="registroForm.get('fecha')?.hasError('required')&& registroForm.get('fecha')?.touched">
+                            <span>Fecha <strong>es requeriada</strong></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mb-5"></div>
+                        <button type="submit" [disabled]="registroForm.invalid" class="btn btn-primary col-lg-8">Guardar</button>
+                        <button routerLink="/" class="btn btn-info float-start">VOLVER</button>
+                      </form>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
